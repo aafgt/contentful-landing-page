@@ -1,10 +1,12 @@
-import HeadingFooter from "./components/Header/Heading-Footer/HeadingFooter";
 import Header from "./components/Header/Header";
+import VideoSection from "./components/VideoSection/VideoSection";
+import Footer from "./components/Footer/Footer";
 function App() {
   return (
-    <div className="flex flex-col h-auto ">
+    <div className="flex flex-col h-auto">
       <Header />
-      <HeadingFooter type="footer" />
+      <VideoSection />
+      <Footer />
     </div>
   );
 }
