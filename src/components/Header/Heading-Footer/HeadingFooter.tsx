@@ -8,7 +8,7 @@ const HeadingFooter: React.FC<HeadingFooterProps> = ({ type }) => {
   const styles = "text-0.5xl hover:opacity-70 text-white cursor-pointer";
 
   return (
-    <div className="flex flex-row justify-items-end items-center bg-black p-3 space-x-10 w-screen">
+    <div className="flex flex-row justify-items-end items-center bg-black p-1  space-x-10 w-screen">
       {type === "heading" && (
         <Links type="single">
           <Link
