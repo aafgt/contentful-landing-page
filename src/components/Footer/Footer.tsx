@@ -1,6 +1,6 @@
-import HeadingFooter from "../Header/Heading-Footer/HeadingFooter";
+import Footing from "./Footing/Footing";
 
 const Footer = () => {
-  return <HeadingFooter type="footer" />;
+  return <Footing />;
 };
 export default Footer;
