@@ -40,6 +40,27 @@ export interface ImageSectionProps {
   category: CategoryProps[];
 }
 
+export interface HeadingProps {
+  title: string;
+  url: string;
+}
+
+export interface FootingProps {
+  title: string;
+  url: string;
+}
+
+export interface FootingCategoryProps {
+  name: string;
+  linkCollection: {
+    items: FootingProps[];
+  };
+}
+
+export interface NavigationProps {
+  title: string;
+  url: string;
+}
 export interface ContentfulContentSectionResponse {
   errors?: object[];
   data: {
@@ -93,6 +114,84 @@ export interface ContentfulCardsSectionResponse {
           }[];
         };
       }[];
+    };
+  };
+}
+
+export interface ContentfulHeadingSectionResponse {
+  errors?: object[];
+  data: {
+    headingfooterSection: {
+      linkCollection: {
+        items: {
+          title: string;
+          url: string;
+        }[];
+      };
+    };
+  };
+}
+
+export interface ContentfulFootingSectionResponse {
+  errors?: object[];
+  data: {
+    footer: {
+      footersCollection: {
+        items: {
+          name: string;
+          linkCollection: {
+            items: {
+              title: string;
+              url: string;
+            }[];
+          };
+        }[];
+      };
+    };
+  };
+}
+
+export interface ContentfulNavigationResponse {
+  errors?: object[];
+  data: {
+    navigation: {
+      logo: {
+        image: {
+          url: string;
+        };
+      };
+      linkCollection: {
+        items: {
+          title: string;
+          url: string;
+        }[];
+      };
+    };
+  };
+}
+
+export interface ContentfulHeroBannerResponse {
+  errors?: object[];
+  data: {
+    heroBanner: {
+      title: string;
+      image: {
+        url: string;
+      };
+    };
+  };
+}
+
+export interface ContentfulVideoSectionResponse {
+  errors?: object[];
+  data: {
+    videoSection: {
+      video: {
+        title: string;
+        url: string;
+        width: number;
+        height: number;
+      };
     };
   };
 }
