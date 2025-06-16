@@ -18,6 +18,7 @@ export interface CardProps {
   image: string;
   cta: React.ReactNode;
   price: number;
+  entryId: string;
 }
 
 export interface CardSectionProps {
@@ -33,6 +34,7 @@ interface LogoProps {
 export interface CategoryProps {
   title: string;
   logo: React.ReactElement<LogoProps>;
+  entryId: string;
 }
 
 export interface ImageSectionProps {
@@ -66,7 +68,9 @@ export interface ContentfulContentSectionResponse {
   data: {
     contentSectionCollection: {
       items: {
-        image: { url: string };
+        __typename: string;
+        sys: { id: string };
+        image: string;
         title: string;
         description: { json: any };
         price: number;
@@ -81,15 +85,17 @@ export interface ContentfulImageSectionResponse {
   data: {
     imageSectionCollection: {
       items: {
+        __typename: string;
+        sys: { id: string };
         name: string;
         categoriesCollection: {
           items: {
+            __typename: string;
+            sys: { id: string };
             title: string;
             logo: {
-              image: {
-                url: string;
-              };
-              url: string;
+              image: string;
+              title: string;
             };
           }[];
         };
@@ -103,13 +109,17 @@ export interface ContentfulCardsSectionResponse {
   data: {
     cardsSectionCollection: {
       items: {
+        __typename: string;
+        sys: { id: string };
         name: string;
         cardsCollection: {
           items: {
+            __typename: string;
+            sys: { id: string };
             title: string;
             category: string;
             price: number;
-            image: { url: string };
+            image: string;
             cta: { title: string; url: string };
           }[];
         };

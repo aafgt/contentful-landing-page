@@ -6,6 +6,12 @@ const useFetch = <T,>(query: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const isLivePreview = new URLSearchParams(window.location.search).get('preview') === 'true';
+
+  const accessToken = isLivePreview
+    ? import.meta.env.VITE_CONTENTFUL_PREVIEW_ACCESS_TOKEN
+    : import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+
   useEffect(() => {
     const fetchContentfulData = async () => {
       setLoading(true);
@@ -16,9 +22,7 @@ const useFetch = <T,>(query: string) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${
-              import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
-            }`,
+            Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({ query }),
         }
@@ -42,7 +46,7 @@ const useFetch = <T,>(query: string) => {
   return {
     data,
     loading,
-    error
+    error,
   };
 };
 
