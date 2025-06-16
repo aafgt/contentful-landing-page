@@ -35,7 +35,7 @@ const CardSection: React.FC = () => {
         {liveData?.data.cardsSectionCollection.items[0].name}
       </h1>
       <div
-        className="flex flex-wrap gap-5"
+        className="grid grid-cols-2 max-md:grid-cols-1 gap-5"
         {...inspectorProps({ fieldId: "cards" })}
       >
         {liveData?.data.cardsSectionCollection.items[0].cardsCollection.items.map(

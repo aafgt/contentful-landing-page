@@ -12,7 +12,7 @@ const Card: React.FC<CardProps> = ({
   const inspectorProps = useContentfulInspectorMode({ entryId });
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-3 flex lg:max-w-1/2">
+    <div className="bg-white rounded-lg shadow-lg p-3 flex">
       <div className="space-y-2 w-2/3">
         <p
           className="bg-yellow-400 rounded-full px-3 py-0.5 font-semibold w-fit"
