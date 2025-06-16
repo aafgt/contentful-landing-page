@@ -2,9 +2,11 @@ export const contentSectionQuery = `
 {
   contentSectionCollection(limit: 5) {
     items {
-      image {
-        url
+      __typename
+      sys {
+        id
       }
+      image
       title
       description {
         json
@@ -23,15 +25,21 @@ export const imageSectionQuery = `
 {
   imageSectionCollection(limit: 5) {
     items {
+      __typename
+      sys {
+        id
+      }
       name
       categoriesCollection(limit: 5) {
         items {
+          __typename
+          sys {
+            id
+          }
           title
           logo {
-            image {
-              url
-            }
-            url
+            image
+            title
           }
         }
       }
@@ -44,14 +52,20 @@ export const cardsSectionQuery = `
 {
   cardsSectionCollection(limit: 5) {
     items {
+      __typename
+      sys {
+        id
+      }
       name
       cardsCollection(limit: 5) {
         items {
+          __typename
+          sys {
+            id
+          }
           title
           category
-          image {
-            url
-          }
+          image
           cta {
             title
             url
