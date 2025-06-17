@@ -1,9 +1,24 @@
+import {
+  useContentfulInspectorMode,
+  useContentfulLiveUpdates,
+} from "@contentful/live-preview/react";
 import useFetch from "../../hooks/useFetch";
 import { VideoSectionQuery } from "../../util/queries";
-import type { ContentfulVideoSectionResponse } from "../../util/types";
+import type {
+  ContentfulVideoSectionResponse,
+  VideoSectionProps,
+} from "../../util/types";
 
 const VideoSection = () => {
-  const { data, error, loading } = useFetch<ContentfulVideoSectionResponse>(VideoSectionQuery);
+  const { data, error, loading } =
+    useFetch<ContentfulVideoSectionResponse>(VideoSectionQuery);
+
+  let dataObj: VideoSectionProps | undefined;
+  let liveData = useContentfulLiveUpdates(data);
+  const inspectorProps = useContentfulInspectorMode({
+    entryId: data?.data.videoSection.sys.id,
+  });
+
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
@@ -11,20 +26,31 @@ const VideoSection = () => {
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
-  const dataArr = data?.data?.videoSection?.video;
+
+  if (liveData) {
+    dataObj = liveData?.data?.videoSection;
+  } else {
+    dataObj = data?.data?.videoSection;
+  }
+  console.log(dataObj?.video);
   return (
     <div className="flex flex-col justify-center items-center bg-white p-2">
-      <h2 className="text-4xl font-bold p-2">{dataArr?.title || "Video Section"}</h2>
+      <h2
+        {...inspectorProps({ fieldId: "name" })}
+        className="text-4xl font-bold p-2"
+      >
+        {dataObj?.name || "Video Section"}
+      </h2>
       <iframe
-        width={dataArr?.width}
-        height={dataArr?.height}
-        src={dataArr?.url}
-        title={dataArr?.title}
-        className="rounded-lg shadow-lg"
+        {...inspectorProps({ fieldId: "video" })}
+        width={720}
+        height={480}
+        src={dataObj?.video}
+        title="Example Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
-      ></iframe>
+        className="rounded-lg shadow-lg"
+      />
     </div>
   );
 };
