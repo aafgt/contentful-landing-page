@@ -7,6 +7,7 @@ import type {
   ContentfulNavigationResponse,
   NavigationProps,
 } from "../../../util/types";
+import { useContentfulInspectorMode, useContentfulLiveUpdates } from "@contentful/live-preview/react";
 
 const Navigation: React.FC = () => {
   const styles =
@@ -14,8 +15,11 @@ const Navigation: React.FC = () => {
   const { data, loading, error } = useFetch<ContentfulNavigationResponse>(
     NavigationSectionQuery
   );
+  const liveData = useContentfulLiveUpdates(data);
+  const inspectorProps = useContentfulInspectorMode({entryId:data?.data?.navigation?.sys.id})
   let dataArr: NavigationProps[] = [];
-  let logoUrl: string = "";
+  let logoUrl = "";
+  let logoTitle = "";
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
@@ -23,13 +27,18 @@ const Navigation: React.FC = () => {
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
-  if (data) {
-    logoUrl = data?.data?.navigation?.logo.image?.url;
-    dataArr = data?.data?.navigation?.linkCollection?.items;
+  if (liveData) {
+    logoUrl = liveData?.data?.navigation?.logo?.image || "";
+    logoTitle = liveData?.data?.navigation?.logo?.title || "";
+    dataArr = liveData?.data?.navigation?.linkCollection?.items || [];
+  } else {
+    logoUrl = data?.data?.navigation?.logo?.image || "";
+    logoTitle = data?.data?.navigation?.logo?.title || "";
+    dataArr = data?.data?.navigation?.linkCollection?.items || [];
   }
   return (
-    <div className="flex flex-row bg-white shadow-xl items-start space-x-10 p-2">
-      <Logo url={logoUrl} image="" />
+    <div {...inspectorProps({ fieldId: "links" })} className="flex flex-row bg-white shadow-xl items-start space-x-10 p-2">
+      <Logo image={logoUrl} title={logoTitle} />
       <Links type="single">
         {dataArr &&
           dataArr.map((item: NavigationProps) => (

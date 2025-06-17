@@ -1,6 +1,5 @@
 import HerroBanner from "./HeroBanner/HeroBanner";
 import Navigation from "./Navigation/Navigation";
-import banner from "../../assets/VFbg.jpg";
 import Heading from "./Heading/Heading";
 const Header = () => {
   return (

@@ -26,8 +26,8 @@ export interface CardSectionProps {
   cards: CardProps[];
 }
 
-interface LogoProps {
-  url: string;
+export interface LogoProps {
+  title: string;
   image: string;
 }
 
@@ -62,6 +62,15 @@ export interface FootingCategoryProps {
 export interface NavigationProps {
   title: string;
   url: string;
+}
+export interface VideoSectionProps {
+  name: string;
+  video: string;
+}
+
+export interface HeroBannerProps {
+  title: string;
+  image: string;
 }
 export interface ContentfulContentSectionResponse {
   errors?: object[];
@@ -132,8 +141,10 @@ export interface ContentfulHeadingSectionResponse {
   errors?: object[];
   data: {
     headingfooterSection: {
+      sys: { id: string };
       linkCollection: {
         items: {
+          sys: { id: string };
           title: string;
           url: string;
         }[];
@@ -146,6 +157,7 @@ export interface ContentfulFootingSectionResponse {
   errors?: object[];
   data: {
     footer: {
+      sys: { id: string };
       footersCollection: {
         items: {
           name: string;
@@ -165,10 +177,12 @@ export interface ContentfulNavigationResponse {
   errors?: object[];
   data: {
     navigation: {
+      sys: {
+        id: string;
+      };
       logo: {
-        image: {
-          url: string;
-        };
+        title: string;
+        image: string;
       };
       linkCollection: {
         items: {
@@ -184,10 +198,11 @@ export interface ContentfulHeroBannerResponse {
   errors?: object[];
   data: {
     heroBanner: {
-      title: string;
-      image: {
-        url: string;
+      sys: {
+        id: string;
       };
+      title: string;
+      image: string;
     };
   };
 }
@@ -196,12 +211,11 @@ export interface ContentfulVideoSectionResponse {
   errors?: object[];
   data: {
     videoSection: {
-      video: {
-        title: string;
-        url: string;
-        width: number;
-        height: number;
+      sys: {
+        id: string;
       };
+      name: string;
+      video: string;
     };
   };
 }
