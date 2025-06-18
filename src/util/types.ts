@@ -70,7 +70,9 @@ export interface VideoSectionProps {
 
 export interface HeroBannerProps {
   title: string;
-  image: string;
+  image:{
+    url:string;
+  }
 }
 export interface ContentfulContentSectionResponse {
   errors?: object[];
@@ -182,7 +184,9 @@ export interface ContentfulNavigationResponse {
       };
       logo: {
         title: string;
-        image: string;
+        image:{
+          url:string
+        }
       };
       linkCollection: {
         items: {
@@ -202,7 +206,9 @@ export interface ContentfulHeroBannerResponse {
         id: string;
       };
       title: string;
-      image: string;
+      image:{
+        url:string
+      }
     };
   };
 }

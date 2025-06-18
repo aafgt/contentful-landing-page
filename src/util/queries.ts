@@ -132,7 +132,9 @@ export const NavigationSectionQuery = `
       sys{
         id
       }
-      image
+      image{
+      url
+      }
       title
     }
     linkCollection{
@@ -161,7 +163,9 @@ heroBanner(id:"34kL5gwgZ4EPk1oO6wE4TF"){
       id
     }
     title
-    image
+    image{
+    url
+    }
   }
 }`;
 
