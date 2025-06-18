@@ -5,6 +5,7 @@ const Card: React.FC<CardProps> = ({
   title,
   category,
   image,
+  imageAlt,
   cta,
   price,
   entryId,
@@ -38,7 +39,7 @@ const Card: React.FC<CardProps> = ({
       <div className="w-1/3">
         <img
           src={image}
-          alt={title}
+          alt={imageAlt}
           className="object-contain w-full h-full"
           {...inspectorProps({ fieldId: "image" })}
         />

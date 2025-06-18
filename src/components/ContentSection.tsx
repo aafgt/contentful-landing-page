@@ -29,13 +29,13 @@ const ContentSection: React.FC = () => {
     <div className="flex p-5 rounded-md shadow-md w-full h-fit">
       <div className="w-1/2">
         <img
-          src={liveData?.data.contentSectionCollection.items[0].image}
-          alt="image"
+          src={liveData?.data.contentSectionCollection.items[0].image.url}
+          alt={liveData?.data.contentSectionCollection.items[0].image.title}
           className="object-contain w-full h-full"
           {...inspectorProps({ fieldId: "image" })}
         />
       </div>
-      <div className="w-1/2 space-y-3">
+      <div className="w-1/2 space-y-3 flex flex-col justify-center">
         <h5
           className="text-3xl font-light"
           {...inspectorProps({ fieldId: "title" })}
@@ -63,7 +63,7 @@ const ContentSection: React.FC = () => {
             liveData?.data.contentSectionCollection.items[0].cta.title || ""
           }
           url={liveData?.data.contentSectionCollection.items[0].cta.url || ""}
-          className="bg-red-500 text-white text-xl font-normal rounded-md px-4 py-2 hover:cursor-pointer hover:bg-red-700"
+          className="bg-red-500 text-white text-xl font-normal rounded-md px-4 py-2 w-fit hover:cursor-pointer hover:bg-red-700"
           {...inspectorProps({ fieldId: "cta" })}
         />
       </div>
@@ -72,15 +72,3 @@ const ContentSection: React.FC = () => {
 };
 
 export default ContentSection;
-
-// import { useContentfulInspectorMode } from '@contentful/live-preview';
-
-// const MyComponent = ({ entry }) => {
-//   const inspectorProps = useContentfulInspectorMode({ entryId: entry.sys.id });
-
-//   return (
-//     <h1 {...inspectorProps({ fieldId: 'title' })}>
-//       {entry.fields.title}
-//     </h1>
-//   );
-// };

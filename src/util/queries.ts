@@ -6,7 +6,10 @@ export const contentSectionQuery = `
       sys {
         id
       }
-      image
+      image {
+        title,
+        url
+      }
       title
       description {
         json
@@ -38,7 +41,9 @@ export const imageSectionQuery = `
           }
           title
           logo {
-            image
+            image {
+              url
+            }
             title
           }
         }
@@ -65,7 +70,10 @@ export const cardsSectionQuery = `
           }
           title
           category
-          image
+          image {
+            title,
+            url
+          }
           cta {
             title
             url

@@ -44,7 +44,8 @@ const CardSection: React.FC = () => {
               key={card.title}
               title={card.title}
               category={card.category}
-              image={card.image}
+              image={card.image.url}
+              imageAlt={card.image.title}
               cta={
                 <CTA
                   title={card.cta.title}

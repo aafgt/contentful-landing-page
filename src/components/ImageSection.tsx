@@ -39,8 +39,8 @@ const ImageSection: React.FC = () => {
               title={category.title}
               logo={
                 <Logo
-                  image={category.logo.image}
-                  url={category.logo.title}
+                  image={category.logo.image.url}
+                  title={category.logo.title}
                   {...inspectorProps({ entryId: category.sys.id, fieldId: "logo" })}
                 />
               }
