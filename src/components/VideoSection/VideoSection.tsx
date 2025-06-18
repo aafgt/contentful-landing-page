@@ -32,7 +32,6 @@ const VideoSection = () => {
   } else {
     dataObj = data?.data?.videoSection;
   }
-  console.log(dataObj?.video);
   return (
     <div className="flex flex-col justify-center items-center bg-white p-2">
       <h2

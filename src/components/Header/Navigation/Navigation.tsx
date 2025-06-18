@@ -28,11 +28,11 @@ const Navigation: React.FC = () => {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
   if (liveData) {
-    logoUrl = liveData?.data?.navigation?.logo?.image || "";
+    logoUrl = liveData?.data?.navigation?.logo?.image.url || "";
     logoTitle = liveData?.data?.navigation?.logo?.title || "";
     dataArr = liveData?.data?.navigation?.linkCollection?.items || [];
   } else {
-    logoUrl = data?.data?.navigation?.logo?.image || "";
+    logoUrl = data?.data?.navigation?.logo?.image.url || "";
     logoTitle = data?.data?.navigation?.logo?.title || "";
     dataArr = data?.data?.navigation?.linkCollection?.items || [];
   }

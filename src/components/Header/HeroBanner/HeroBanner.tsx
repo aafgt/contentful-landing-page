@@ -25,11 +25,11 @@ const HerroBanner: React.FC = () => {
   } else {
     dataObj = data?.data?.heroBanner;
   }
-
+  console.log(dataObj?.image.url)
   return (
     <>
       <img {...inspectorProps({fieldId: "heroBanner"})}
-        src={dataObj?.image}
+        src={dataObj?.image.url}
         alt={dataObj?.title}
         className="w-screen min-h-[200px] max-h-[300px] object-center rounded-2xl"
       />
