@@ -32,7 +32,7 @@ const Navigation: React.FC = () => {
     logoTitle = liveData?.data?.navigation?.logo?.title || "";
     dataArr = liveData?.data?.navigation?.linkCollection?.items || [];
   } else {
-    logoUrl = data?.data?.navigation?.logo?.image.url || "";
+    logoUrl = data?.data?.navigation?.logo?.image?.url || "";
     logoTitle = data?.data?.navigation?.logo?.title || "";
     dataArr = data?.data?.navigation?.linkCollection?.items || [];
   }
@@ -42,7 +42,7 @@ const Navigation: React.FC = () => {
       <Links type="single">
         {dataArr &&
           dataArr.map((item: NavigationProps) => (
-            <Link title={item.title} url={item.url} styles={styles} />
+            <Link title={item?.title} url={item?.url} styles={styles} />
           ))}
       </Links>
     </div>

@@ -31,7 +31,7 @@ const Footing = () => {
         dataArr.map((category) => (
           <Links type="group">
             <h2 className="text-white">{category.name}</h2>
-            {category.linkCollection.items.map((item: FootingProps) => (
+            {category.linkCollection?.items?.map((item: FootingProps) => (
               <Link key={item.title} url={item.url} title={item.title} styles={styles} />
             ))}
           </Links>

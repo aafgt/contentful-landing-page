@@ -35,16 +35,16 @@ const ImageSection: React.FC = () => {
         liveData.data.imageSectionCollection.items[0].categoriesCollection.items.map(
           (category) => (
             <Category
-              key={category.title}
-              title={category.title}
+              key={category?.title}
+              title={category?.title}
               logo={
                 <Logo
-                  image={category.logo.image.url}
-                  title={category.logo.title}
+                  image={category.logo?.image?.url}
+                  title={category.logo?.title}
                   {...inspectorProps({ entryId: category.sys.id, fieldId: "logo" })}
                 />
               }
-              entryId={category.sys.id}
+              entryId={category?.sys.id}
             />
           )
         )}

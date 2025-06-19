@@ -41,21 +41,21 @@ const CardSection: React.FC = () => {
         {liveData?.data.cardsSectionCollection.items[0].cardsCollection.items.map(
           (card) => (
             <Card
-              key={card.title}
-              title={card.title}
-              category={card.category}
-              image={card.image.url}
-              imageAlt={card.image.title}
+              key={card?.title}
+              title={card?.title}
+              category={card?.category}
+              image={card?.image?.url}
+              imageAlt={card?.image?.title}
               cta={
                 <CTA
-                  title={card.cta.title}
-                  url={card.cta.url}
+                  title={card?.cta?.title}
+                  url={card?.cta?.url}
                   className="text-red-700 hover:underline hover:cursor-pointer"
                   {...inspectorProps({ entryId: card.sys.id, fieldId: "cta" })}
                 />
               }
-              price={card.price}
-              entryId={card.sys.id}
+              price={card?.price}
+              entryId={card?.sys.id}
             />
           )
         )}
