@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import fs from "fs";
 import contentful from "contentful-management";
 
@@ -66,6 +67,12 @@ const assets = [
     path: "./src/assets/watch.png",
     contentType: "image/png",
   },
+  {
+  title: "Sample Video",
+  fileName: "my-video.mp4",
+  path: "./src/assets/video.mp4",
+  contentType: "video/mp4",
+}
 ];
 
 client

@@ -185,6 +185,8 @@ export const VideoSectionQuery = `
       id
     }
     name
-    video
+    video{
+    url
+    }
   }
 }`;

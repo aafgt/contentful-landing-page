@@ -66,7 +66,9 @@ export interface NavigationProps {
 }
 export interface VideoSectionProps {
   name: string;
-  video: string;
+  video: {
+    url:string
+  }
 }
 
 export interface HeroBannerProps {
@@ -230,7 +232,9 @@ export interface ContentfulVideoSectionResponse {
         id: string;
       };
       name: string;
-      video: string;
+      video:{
+        url:string
+      }
     };
   };
 }

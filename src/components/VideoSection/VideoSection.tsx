@@ -28,7 +28,7 @@ const VideoSection = () => {
   }
 
   if (liveData) {
-    dataObj = liveData?.data?.videoSection;
+    dataObj = liveData?.data?.videoSection ;
   } else {
     dataObj = data?.data?.videoSection;
   }
@@ -44,7 +44,7 @@ const VideoSection = () => {
         {...inspectorProps({ fieldId: "video" })}
         width={720}
         height={480}
-        src={dataObj?.video}
+        src={dataObj?.video?.url}
         title="Example Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
