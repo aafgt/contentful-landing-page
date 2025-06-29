@@ -8,14 +8,15 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 
-const ImageSection: React.FC = () => {
-  const { data, loading, error } =
-    useFetch<ContentfulImageSectionResponse>(imageSectionQuery);
+const ImageSection = ({ id }: { id: string }) => {
+  const { data, loading, error } = useFetch<ContentfulImageSectionResponse>(
+    imageSectionQuery(id)
+  );
 
   const liveData = useContentfulLiveUpdates(data);
 
   const inspectorProps = useContentfulInspectorMode({
-    entryId: liveData?.data.imageSectionCollection.items[0].sys.id,
+    entryId: liveData?.data.imageSection.sys.id,
   });
 
   if (loading) {
@@ -32,7 +33,7 @@ const ImageSection: React.FC = () => {
       {...inspectorProps({ fieldId: "categories" })}
     >
       {liveData &&
-        liveData.data.imageSectionCollection.items[0].categoriesCollection.items.map(
+        liveData.data.imageSection.categoriesCollection.items.map(
           (category) => (
             <Category
               key={category?.title}
@@ -41,7 +42,10 @@ const ImageSection: React.FC = () => {
                 <Logo
                   image={category.logo?.image?.url}
                   title={category.logo?.title}
-                  {...inspectorProps({ entryId: category.sys.id, fieldId: "logo" })}
+                  {...inspectorProps({
+                    entryId: category.sys.id,
+                    fieldId: "logo",
+                  })}
                 />
               }
               entryId={category?.sys.id}

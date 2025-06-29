@@ -8,14 +8,14 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 
-const CardSection: React.FC = () => {
+const CardSection = ({id}: {id: string}) => {
   const { data, loading, error } =
-    useFetch<ContentfulCardsSectionResponse>(cardsSectionQuery);
+    useFetch<ContentfulCardsSectionResponse>(cardsSectionQuery(id));
 
   const liveData = useContentfulLiveUpdates(data);
 
   const inspectorProps = useContentfulInspectorMode({
-    entryId: liveData?.data.cardsSectionCollection.items[0].sys.id,
+    entryId: liveData?.data.cardsSection.sys.id,
   });
 
   if (loading) {
@@ -32,13 +32,13 @@ const CardSection: React.FC = () => {
         className="text-3xl font-semibold my-3"
         {...inspectorProps({ fieldId: "name" })}
       >
-        {liveData?.data.cardsSectionCollection.items[0].name}
+        {liveData?.data.cardsSection.name}
       </h1>
       <div
         className="grid grid-cols-2 max-md:grid-cols-1 gap-5"
         {...inspectorProps({ fieldId: "cards" })}
       >
-        {liveData?.data.cardsSectionCollection.items[0].cardsCollection.items.map(
+        {liveData?.data.cardsSection.cardsCollection.items.map(
           (card) => (
             <Card
               key={card?.title}

@@ -67,32 +67,30 @@ export interface NavigationProps {
 export interface VideoSectionProps {
   name: string;
   video: {
-    url:string
-  }
+    url: string;
+  };
 }
 
 export interface HeroBannerProps {
   title: string;
-  image:{
-    url:string;
-  }
+  image: {
+    url: string;
+  };
 }
 export interface ContentfulContentSectionResponse {
   errors?: object[];
   data: {
-    contentSectionCollection: {
-      items: {
-        __typename: string;
-        sys: { id: string };
-        image: {
-          title: string;
-          url: string;
-        };
+    contentSection: {
+      __typename: string;
+      sys: { id: string };
+      image: {
         title: string;
-        description: { json: any };
-        price: number;
-        cta: { title: string; url: string };
-      }[];
+        url: string;
+      };
+      title: string;
+      description: { json: any };
+      price: number;
+      cta: { title: string; url: string };
     };
   };
 }
@@ -100,25 +98,23 @@ export interface ContentfulContentSectionResponse {
 export interface ContentfulImageSectionResponse {
   errors?: object[];
   data: {
-    imageSectionCollection: {
-      items: {
-        __typename: string;
-        sys: { id: string };
-        name: string;
-        categoriesCollection: {
-          items: {
-            __typename: string;
-            sys: { id: string };
-            title: string;
-            logo: {
-              image: {
-                url: string;
-              };
-              title: string;
+    imageSection: {
+      __typename: string;
+      sys: { id: string };
+      name: string;
+      categoriesCollection: {
+        items: {
+          __typename: string;
+          sys: { id: string };
+          title: string;
+          logo: {
+            image: {
+              url: string;
             };
-          }[];
-        };
-      }[];
+            title: string;
+          };
+        }[];
+      };
     };
   };
 }
@@ -126,26 +122,24 @@ export interface ContentfulImageSectionResponse {
 export interface ContentfulCardsSectionResponse {
   errors?: object[];
   data: {
-    cardsSectionCollection: {
-      items: {
-        __typename: string;
-        sys: { id: string };
-        name: string;
-        cardsCollection: {
-          items: {
-            __typename: string;
-            sys: { id: string };
+    cardsSection: {
+      __typename: string;
+      sys: { id: string };
+      name: string;
+      cardsCollection: {
+        items: {
+          __typename: string;
+          sys: { id: string };
+          title: string;
+          category: string;
+          price: number;
+          image: {
             title: string;
-            category: string;
-            price: number;
-            image: {
-              title: string;
-              url: string;
-            };
-            cta: { title: string; url: string };
-          }[];
-        };
-      }[];
+            url: string;
+          };
+          cta: { title: string; url: string };
+        }[];
+      };
     };
   };
 }
@@ -195,9 +189,9 @@ export interface ContentfulNavigationResponse {
       };
       logo: {
         title: string;
-        image:{
-          url:string
-        }
+        image: {
+          url: string;
+        };
       };
       linkCollection: {
         items: {
@@ -217,9 +211,9 @@ export interface ContentfulHeroBannerResponse {
         id: string;
       };
       title: string;
-      image:{
-        url:string
-      }
+      image: {
+        url: string;
+      };
     };
   };
 }
@@ -232,9 +226,25 @@ export interface ContentfulVideoSectionResponse {
         id: string;
       };
       name: string;
-      video:{
-        url:string
-      }
+      video: {
+        url: string;
+      };
+    };
+  };
+}
+
+export interface ContentfulLandingPageResponse {
+  errors?: object[];
+  data: {
+    landingPageCollection: {
+      items: {
+        sectionsCollection: {
+          items: {
+            __typename: string;
+            sys: { id: string };
+          }[];
+        };
+      }[];
     };
   };
 }

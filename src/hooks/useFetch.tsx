@@ -24,7 +24,7 @@ const useFetch = <T,>(query: string) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
           },
-          body: JSON.stringify({ query }),
+          body: JSON.stringify({ query, variables: { preview: isLivePreview } }),
         }
       );
 

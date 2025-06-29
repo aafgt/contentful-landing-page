@@ -1,7 +1,6 @@
-export const contentSectionQuery = `
-{
-  contentSectionCollection(limit: 5) {
-    items {
+export const contentSectionQuery = (id: string) => `
+query ($preview: Boolean!) {
+  contentSection(id: "${id}", preview: $preview) {
       __typename
       sys {
         id
@@ -19,15 +18,13 @@ export const contentSectionQuery = `
         title
         url
       }
-    }
   }
 }
 `;
 
-export const imageSectionQuery = `
-{
-  imageSectionCollection(limit: 5) {
-    items {
+export const imageSectionQuery = (id: string) => `
+query ($preview: Boolean!) {
+  imageSection(id: "${id}", preview: $preview) {
       __typename
       sys {
         id
@@ -48,15 +45,13 @@ export const imageSectionQuery = `
           }
         }
       }
-    }
   }
 }
 `;
 
-export const cardsSectionQuery = `
-{
-  cardsSectionCollection(limit: 5) {
-    items {
+export const cardsSectionQuery = (id: string) => `
+query ($preview: Boolean!) {
+  cardsSection(id: "${id}", preview: $preview) {
       __typename
       sys {
         id
@@ -81,14 +76,13 @@ export const cardsSectionQuery = `
           price
         }
       }
-    }
   }
 }
 `;
 
 export const headingSectionQuery = `
-{
-  headingfooterSection(id:"sXqIhTr4f7cCweVeE58kb"){
+query ($preview: Boolean!) {
+  headingfooterSection(id:"sXqIhTr4f7cCweVeE58kb", preview: $preview){
     __typename
     sys{ id }
     linkCollection{
@@ -102,6 +96,29 @@ export const headingSectionQuery = `
   }
 } 
 `;
+
+// query ($preview: Boolean!) {
+//   header(id:"5m3QGDZcxeve7JxfHgHgdJ", preview: $preview){
+//     __typename
+//     sys{ id }
+//     heading {
+//       name
+//     }
+//     navigation {
+//       logo {
+//         title
+//       }
+//       linkCollection {
+//         items {
+// 					title
+//         }
+//       }
+//     }
+//     heroBanner {
+//       title
+//     }
+//   }
+// } 
 
 export const footingSectionQuery = `
  {
@@ -190,3 +207,47 @@ export const VideoSectionQuery = `
     }
   }
 }`;
+
+export const landingPageQuery = `
+query ($preview: Boolean!) {
+  landingPageCollection(preview: $preview) {
+    items {
+      sectionsCollection {
+				items {
+          __typename
+          ...on Header {
+            sys {
+              id
+            }
+          }
+          ...on ContentSection{
+            sys {
+              id
+            }
+          }
+          ...on ImageSection {
+            sys {
+              id
+            }
+          }
+          ...on CardsSection {
+            sys {
+              id
+            }
+          }
+          ...on VideoSection {
+            sys {
+              id
+            }
+          }
+          ...on Footer {
+            sys {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
