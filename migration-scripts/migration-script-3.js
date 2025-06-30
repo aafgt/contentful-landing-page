@@ -18,7 +18,7 @@ module.exports = function (migration) {
     .name("Logo")
     .type("Link")
     .required(true)
-    .validations([{ linkContentType: ["logo"] }]});
+    .validations([{ linkContentType: ["logo"] }]);
 
   /**
    * Image Section content type
