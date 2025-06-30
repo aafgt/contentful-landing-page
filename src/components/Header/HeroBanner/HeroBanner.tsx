@@ -12,24 +12,32 @@ import { heroBannerQuery } from "../../../util/queries";
  * @param id - The Contentful entry id for the hero banner.
  */
 const HerroBanner= ({id}:{id:string}) => {
+  // Fetch hero banner data from Contentful.
   const { data, error, loading } =
     useFetch<ContentfulHeroBannerResponse>(heroBannerQuery(id));
+  // Enable inspector mode for the hero banner entry.
   const inspectorProps = useContentfulInspectorMode({entryId:data?.data?.heroBanner?.sys.id})
+  // Get live updates from Contentful if enabled.
   let liveData = useContentfulLiveUpdates(data);
   let dataObj: HeroBannerProps | undefined;
+  // Show loading state.
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
 
+  // Show error message if fetching fails.
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
+  // Use live data if available, otherwise fallback to fetched data.
   if (liveData) {
     dataObj = liveData?.data?.heroBanner;
   } else {
     dataObj = data?.data?.heroBanner;
   }
+  // Log the image URL for debugging.
   console.log(dataObj?.image.url)
+  // Render the hero banner image.
   return (
     <>
       <img {...inspectorProps({fieldId: "heroBanner"})}

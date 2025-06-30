@@ -14,6 +14,7 @@ const Card: React.FC<CardProps> = ({
   price,
   entryId,
 }) => {
+  // Hook to enable Contentful inspector mode for this card entry.
   const inspectorProps = useContentfulInspectorMode({ entryId });
 
   return (

@@ -5,6 +5,7 @@ import Footing from "./Footing/Footing";
  * @param id - The Contentful entry id for the footer.
  */
 const Footer = ({ id }: { id: string }) => {
+  // Render the Footing component, passing the footer entry id.
   return <Footing id={id} />;
 };
 export default Footer;

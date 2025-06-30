@@ -8,6 +8,7 @@ interface LinksProps {
 }
 
 const Links: React.FC<LinksProps> = ({ type, children }) => {
+  // Render children in a flex row if type is "single", or flex column if "group".
   return (
     <>
       {type === "single" && (

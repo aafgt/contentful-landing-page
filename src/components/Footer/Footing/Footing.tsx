@@ -14,23 +14,31 @@ import { useContentfulInspectorMode, useContentfulLiveUpdates } from "@contentfu
  * @param id - The Contentful entry id for the footer section.
  */
 const Footing = ({ id }: { id: string }) => {
+  // Styles for the footer links.
   const styles = "text-0.5xl hover:opacity-70 text-white cursor-pointer";
+  // Fetch footer data from Contentful.
   const { data, loading, error } =
     useFetch<ContentfulFootingSectionResponse>(footingSectionQuery(id));
+  // Enable inspector mode for the footer entry.
   const inspectorProps = useContentfulInspectorMode({
     entryId: data?.data?.footer?.sys.id,
   });
+  // Get live updates from Contentful if enabled.
   let liveData = useContentfulLiveUpdates(data);
+  // Show loading state.
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
 
+  // Show error message if fetching fails.
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
 
+  // Get the array of footer categories.
   const dataArr: FootingCategoryProps[] =
     liveData?.data?.footer?.footersCollection?.items || [];
+  // Render each category and its links.
   return (
     <div
       {...inspectorProps({ fieldId: "footers" })}

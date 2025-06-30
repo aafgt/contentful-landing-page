@@ -12,24 +12,30 @@ import {
  * @param id - The Contentful entry id for the content section.
  */
 const ContentSection = ({ id }: { id: string }) => {
+  // Fetch content section data from Contentful.
   const { data, loading, error } = useFetch<ContentfulContentSectionResponse>(
     contentSectionQuery(id)
   );
 
+  // Get live updates from Contentful if enabled.
   const liveData = useContentfulLiveUpdates(data);
 
+  // Enable inspector mode for the content section entry.
   const inspectorProps = useContentfulInspectorMode({
     entryId: liveData?.data.contentSection.sys.id,
   });
 
+  // Show loading state.
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
 
+  // Show error message if fetching fails.
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
 
+  // Render the content section with image, title, description, price, and CTA button.
   return (
     <div className="flex p-5 rounded-md shadow-md w-full h-fit">
       <div className="w-1/2">

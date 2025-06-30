@@ -15,6 +15,8 @@ import type { ContentfulLandingPageResponse } from "./util/types";
  * @param sectionId - The Contentful section id.
  */
 function getReactComponentOfSection(sectionTypeName: string, sectionId: string) {
+  // This function maps Contentful section type names to React components.
+  // It allows dynamic rendering of different section types based on Contentful data.
   switch (sectionTypeName) {
     case "Header":
       return <Header id={sectionId} />;
@@ -29,6 +31,7 @@ function getReactComponentOfSection(sectionTypeName: string, sectionId: string) 
     case "Footer":
       return <Footer id={sectionId} />;
     default:
+      // If the section type is not recognized, return null (renders nothing).
       return null;
   }
 }
@@ -37,17 +40,22 @@ function getReactComponentOfSection(sectionTypeName: string, sectionId: string) 
  * The main App component that renders the landing page sections from Contentful.
  */
 function App() {
+  // Fetch landing page data from Contentful using the custom hook.
   const { data, loading, error } =
     useFetch<ContentfulLandingPageResponse>(landingPageQuery);
 
+  // Show loading state while fetching data.
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
 
+  // Show error message if fetching fails.
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
 
+  // Render the ContentfulLivePreviewProvider to enable live preview and inspector mode.
+  // Dynamically render each section from Contentful using getReactComponentOfSection.
   return (
     <ContentfulLivePreviewProvider
       locale="en-US"

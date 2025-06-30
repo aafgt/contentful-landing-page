@@ -9,17 +9,21 @@ import type { ContentfulHeaderRespones } from "../../util/types";
  * @param id - The Contentful entry id for the header.
  */
 const Header = ({ id }: { id: string }) => {
+  // Fetch header data from Contentful.
   const { data, loading, error } =
     useFetch<ContentfulHeaderRespones>(headerQuery(id));
 
+  // Show loading state.
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
 
+  // Show error message if fetching fails.
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
 
+  // Render the Heading, Navigation, and HeroBanner components if their ids are present.
   return (
   <>
     <div className="fixed">

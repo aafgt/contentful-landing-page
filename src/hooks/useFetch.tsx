@@ -9,8 +9,10 @@ import { useEffect, useState } from "react";
  * @returns An object containing the data, loading state, and error message.
  */
 const useFetch = <T,>(query: string) => {
+  // State for the fetched data.
   const [data, setData] = useState<T>();
 
+  // State for loading and error.
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,11 +21,13 @@ const useFetch = <T,>(query: string) => {
   const isLivePreview =
     new URLSearchParams(window.location.search).get("preview") === "true";
 
+  // Choose the correct Contentful access token based on preview mode.
   const accessToken = isLivePreview
     ? import.meta.env.VITE_CONTENTFUL_PREVIEW_ACCESS_TOKEN
     : import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 
   useEffect(() => {
+    // Fetch data from Contentful GraphQL API.
     const fetchContentfulData = async () => {
       setLoading(true);
 
@@ -42,12 +46,14 @@ const useFetch = <T,>(query: string) => {
         }
       );
 
+      // Handle HTTP errors.
       if (!response.ok) {
         setError(`A ${response.status} error occurred...`);
         setLoading(false);
         return;
       }
 
+      // Parse and store the response data.
       const data = await response.json();
       setData(data);
 
@@ -57,6 +63,7 @@ const useFetch = <T,>(query: string) => {
     fetchContentfulData();
   }, []);
 
+  // Return the data, loading, and error states.
   return {
     data,
     loading,

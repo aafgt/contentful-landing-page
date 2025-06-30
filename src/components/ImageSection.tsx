@@ -13,24 +13,30 @@ import {
  * @param id - The Contentful entry id for the image section.
  */
 const ImageSection = ({ id }: { id: string }) => {
+  // Fetch image section data from Contentful.
   const { data, loading, error } = useFetch<ContentfulImageSectionResponse>(
     imageSectionQuery(id)
   );
 
+  // Get live updates from Contentful if enabled.
   const liveData = useContentfulLiveUpdates(data);
 
+  // Enable inspector mode for the image section entry.
   const inspectorProps = useContentfulInspectorMode({
     entryId: liveData?.data.imageSection.sys.id,
   });
 
+  // Show loading state.
   if (loading) {
     return <p className="text-center">Loading...</p>;
   }
 
+  // Show error message if fetching fails.
   if (error) {
     return <p className="text-red-700 font-bold text-center">{error}</p>;
   }
 
+  // Render each category in the image section using the Category and Logo components.
   return (
     <div
       className="p-3 flex flex-wrap gap-3 justify-center items-center"
