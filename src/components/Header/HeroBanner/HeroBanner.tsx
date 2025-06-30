@@ -4,12 +4,16 @@ import type {
   ContentfulHeroBannerResponse,
   HeroBannerProps,
 } from "../../../util/types";
-import { HeroBannerQuery } from "../../../util/queries";
 import { useContentfulInspectorMode, useContentfulLiveUpdates } from "@contentful/live-preview/react";
+import { heroBannerQuery } from "../../../util/queries";
 
-const HerroBanner: React.FC = () => {
+/**
+ * HerroBanner component displays the hero banner image.
+ * @param id - The Contentful entry id for the hero banner.
+ */
+const HerroBanner= ({id}:{id:string}) => {
   const { data, error, loading } =
-    useFetch<ContentfulHeroBannerResponse>(HeroBannerQuery);
+    useFetch<ContentfulHeroBannerResponse>(heroBannerQuery(id));
   const inspectorProps = useContentfulInspectorMode({entryId:data?.data?.heroBanner?.sys.id})
   let liveData = useContentfulLiveUpdates(data);
   let dataObj: HeroBannerProps | undefined;

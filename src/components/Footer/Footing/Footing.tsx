@@ -9,11 +9,17 @@ import type {
 } from "../../../util/types";
 import { useContentfulInspectorMode, useContentfulLiveUpdates } from "@contentful/live-preview/react";
 
-const Footing = () => {
+/**
+ * Footing component displays footer Content entry and their links.
+ * @param id - The Contentful entry id for the footer section.
+ */
+const Footing = ({ id }: { id: string }) => {
   const styles = "text-0.5xl hover:opacity-70 text-white cursor-pointer";
   const { data, loading, error } =
-    useFetch<ContentfulFootingSectionResponse>(footingSectionQuery);
-  const inspectorProps = useContentfulInspectorMode({entryId: data?.data?.footer?.sys.id})
+    useFetch<ContentfulFootingSectionResponse>(footingSectionQuery(id));
+  const inspectorProps = useContentfulInspectorMode({
+    entryId: data?.data?.footer?.sys.id,
+  });
   let liveData = useContentfulLiveUpdates(data);
   if (loading) {
     return <p className="text-center">Loading...</p>;
@@ -26,13 +32,21 @@ const Footing = () => {
   const dataArr: FootingCategoryProps[] =
     liveData?.data?.footer?.footersCollection?.items || [];
   return (
-    <div {...inspectorProps({fieldId: "footers"})} className="flex flex-row justify-items-end items-center bg-black p-1  space-x-10 w-screen">
+    <div
+      {...inspectorProps({ fieldId: "footers" })}
+      className="flex flex-row justify-items-end items-center bg-black p-1  space-x-10 w-screen"
+    >
       {dataArr &&
         dataArr.map((category) => (
           <Links type="group">
             <h2 className="text-white">{category.name}</h2>
             {category.linkCollection?.items?.map((item: FootingProps) => (
-              <Link key={item.title} url={item.url} title={item.title} styles={styles} />
+              <Link
+                key={item.title}
+                url={item.url}
+                title={item.title}
+                styles={styles}
+              />
             ))}
           </Links>
         ))}

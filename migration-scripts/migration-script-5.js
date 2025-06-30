@@ -1,4 +1,11 @@
+/**
+ * Migration script to create Contentful content type: landingPage.
+ * @param {import('contentful-migration').MigrationFunction} migration - The migration object.
+ */
 module.exports = function (migration) {
+  /**
+   * Landing Page content type
+   */
   const landingPage = migration
     .createContentType("landingPage")
     .name("Landing Page")

@@ -7,6 +7,10 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 
+/**
+ * ContentSection component displays content section's Content entry with image, title, description, price, and CTA.
+ * @param id - The Contentful entry id for the content section.
+ */
 const ContentSection = ({ id }: { id: string }) => {
   const { data, loading, error } = useFetch<ContentfulContentSectionResponse>(
     contentSectionQuery(id)

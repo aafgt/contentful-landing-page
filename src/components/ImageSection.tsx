@@ -8,6 +8,10 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 
+/**
+ * ImageSection component displays Image Section Content entry as a collection of categories with logos.
+ * @param id - The Contentful entry id for the image section.
+ */
 const ImageSection = ({ id }: { id: string }) => {
   const { data, loading, error } = useFetch<ContentfulImageSectionResponse>(
     imageSectionQuery(id)

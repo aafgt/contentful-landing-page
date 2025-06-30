@@ -1,4 +1,11 @@
+/**
+ * Migration script to create Contentful content types: heroBanner, logo, link, cta, videoSection.
+ * @param {import('contentful-migration').MigrationFunction} migration - The migration object.
+ */
 module.exports = function (migration) {
+  /**
+   * Hero Banner content type
+   */
   const heroBanner = migration
     .createContentType("heroBanner")
     .name("Hero Banner")
@@ -13,6 +20,9 @@ module.exports = function (migration) {
     .required(true)
     .name("Image");
 
+  /**
+   * Logo content type
+   */
   const logo = migration
     .createContentType("logo")
     .name("Logo")
@@ -27,6 +37,9 @@ module.exports = function (migration) {
 
   logo.createField("url").type("Symbol").required(true).name("URL");
 
+  /**
+   * Link content type
+   */
   const link = migration
     .createContentType("link")
     .name("Link")
@@ -36,6 +49,9 @@ module.exports = function (migration) {
 
   link.createField("url").type("Symbol").required(true).name("URL");
 
+  /**
+   * CTA content type
+   */
   const cta = migration
     .createContentType("cta")
     .name("CTA")
@@ -45,6 +61,9 @@ module.exports = function (migration) {
 
   cta.createField("url").type("Symbol").required(true).name("URL");
 
+  /**
+   * Video Section content type
+   */
   const videoSection = migration
     .createContentType("videoSection")
     .name("Video Section")

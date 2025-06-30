@@ -11,10 +11,14 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 
-const Heading = () => {
+/**
+ * Heading component displays navigation links at the top of the page.
+ * @param id - The Contentful entry id for the heading section.
+ */
+const Heading = ({ id }: { id: string }) => {
   const styles = "text-0.5xl hover:opacity-70 text-white cursor-pointer";
   const { data, loading, error } =
-    useFetch<ContentfulHeadingSectionResponse>(headingSectionQuery);
+    useFetch<ContentfulHeadingSectionResponse>(headingSectionQuery(id));
   let liveData = useContentfulLiveUpdates(data);
   const inspectorProps = useContentfulInspectorMode({
     entryId: data?.data?.headingfooterSection?.sys.id,
@@ -33,8 +37,11 @@ const Heading = () => {
     dataArr = data?.data?.headingfooterSection?.linkCollection?.items || [];
   }
   return (
-    <div {...inspectorProps({ fieldId: "link" })} className="flex flex-row justify-items-end items-center bg-black p-1  space-x-10 w-screen">
-      <Links  type="single">
+    <div
+      {...inspectorProps({ fieldId: "link" })}
+      className="flex flex-row justify-items-end items-center bg-black p-1  space-x-10 w-screen"
+    >
+      <Links type="single">
         {dataArr &&
           dataArr.map((item: HeadingProps) => (
             <Link

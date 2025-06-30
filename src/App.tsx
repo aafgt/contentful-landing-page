@@ -9,10 +9,15 @@ import useFetch from "./hooks/useFetch";
 import { landingPageQuery } from "./util/queries";
 import type { ContentfulLandingPageResponse } from "./util/types";
 
+/**
+ * Returns the React component for a given section type and id.
+ * @param sectionTypeName - The Contentful section typename.
+ * @param sectionId - The Contentful section id.
+ */
 function getReactComponentOfSection(sectionTypeName: string, sectionId: string) {
   switch (sectionTypeName) {
     case "Header":
-      return <Header />;
+      return <Header id={sectionId} />;
     case "ContentSection":
       return <ContentSection id={sectionId} />;
     case "ImageSection":
@@ -20,14 +25,17 @@ function getReactComponentOfSection(sectionTypeName: string, sectionId: string) 
     case "CardsSection":
       return <CardSection id={sectionId} />;
     case "VideoSection":
-      return <VideoSection />;
+      return <VideoSection id={sectionId} />;
     case "Footer":
-      return <Footer />;
+      return <Footer id={sectionId} />;
     default:
       return null;
   }
 }
 
+/**
+ * The main App component that renders the landing page sections from Contentful.
+ */
 function App() {
   const { data, loading, error } =
     useFetch<ContentfulLandingPageResponse>(landingPageQuery);

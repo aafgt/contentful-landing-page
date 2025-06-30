@@ -1,4 +1,7 @@
-
+/**
+ * Link component renders a styled anchor element.
+ * @param props - LinkProps containing title, url, and styles.
+ */
 interface LinkProps {
     title: string;
     url: string;

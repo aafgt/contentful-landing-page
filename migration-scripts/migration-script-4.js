@@ -1,4 +1,11 @@
+/**
+ * Migration script to create Contentful content types: header, footer.
+ * @param {import('contentful-migration').MigrationFunction} migration - The migration object.
+ */
 module.exports = function (migration) {
+  /**
+   * Header content type
+   */
   const header = migration
     .createContentType("header")
     .name("Header")
@@ -26,6 +33,9 @@ module.exports = function (migration) {
     .required(true)
     .name("HeroBanner");
 
+  /**
+   * Footer content type
+   */
   const footer = migration
     .createContentType("footer")
     .name("Footer")

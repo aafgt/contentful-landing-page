@@ -1,6 +1,10 @@
 import { useContentfulInspectorMode } from "@contentful/live-preview/react";
 import type { CardProps } from "../util/types";
 
+/**
+ * Card component displays a product or item with title, category, image, price, and CTA.
+ * @param props - CardProps containing card details.
+ */
 const Card: React.FC<CardProps> = ({
   title,
   category,

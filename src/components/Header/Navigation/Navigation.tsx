@@ -2,20 +2,24 @@ import Link from "../Link/Link";
 import Logo from "../../Logo/Logo";
 import Links from "../Links/Links";
 import useFetch from "../../../hooks/useFetch";
-import { NavigationSectionQuery } from "../../../util/queries";
 import type {
   ContentfulNavigationResponse,
   NavigationProps,
 } from "../../../util/types";
 import { useContentfulInspectorMode, useContentfulLiveUpdates } from "@contentful/live-preview/react";
+import { navigationSectionQuery } from "../../../util/queries";
 
-const Navigation: React.FC = () => {
+/**
+ * Navigation component displays the logo and navigation links.
+ * @param id - The Contentful entry id for the navigation section.
+ */
+const Navigation = ({id}:{id:string}) => {
   const styles =
     "font-bold text-2xl hover:scale-110 hover:text-red-500 cursor-pointer";
   const { data, loading, error } = useFetch<ContentfulNavigationResponse>(
-    NavigationSectionQuery
+    navigationSectionQuery(id)
   );
-  const liveData = useContentfulLiveUpdates(data);
+  let liveData = useContentfulLiveUpdates(data);
   const inspectorProps = useContentfulInspectorMode({entryId:data?.data?.navigation?.sys.id})
   let dataArr: NavigationProps[] = [];
   let logoUrl = "";

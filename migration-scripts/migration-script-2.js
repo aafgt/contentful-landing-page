@@ -1,4 +1,11 @@
+/**
+ * Migration script to create Contentful content types: card, cardSection, contentSection.
+ * @param {import('contentful-migration').MigrationFunction} migration - The migration object.
+ */
 module.exports = function (migration) {
+  /**
+   * Card content type
+   */
   const card = migration
     .creatContentType("card")
     .name("Card")
@@ -26,6 +33,9 @@ module.exports = function (migration) {
     .required(true)
     .name("Price");
 
+  /**
+   * Card Section content type
+   */
   const cardSection = migration
     .creatContentType("cardSection")
     .name("Card Section")
@@ -35,11 +45,14 @@ module.exports = function (migration) {
   cardSection
     .createField("cards")
     .type("Array")
-    .items({type: "Link", linkType: "Entry"})
+    .items({ type: "Link", linkType: "Entry" })
     .validations([{ linkContentType: ["card"] }])
     .required(true)
     .name("Cards");
 
+  /**
+   * Content Section content type
+   */
   const contentSection = migration
     .creatContentType("contentSection")
     .name("Content Section")

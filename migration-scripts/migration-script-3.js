@@ -1,4 +1,11 @@
+/**
+ * Migration script to create Contentful content types: category, imageSection, navigation.
+ * @param {import('contentful-migration').MigrationFunction} migration - The migration object.
+ */
 module.exports = function (migration) {
+  /**
+   * Category content type
+   */
   const category = migration
     .createCotentType("category")
     .name("Category")
@@ -11,8 +18,11 @@ module.exports = function (migration) {
     .name("Logo")
     .type("Link")
     .required(true)
-    .validations([{ linkContentType: ["logo"] }]);
+    .validations([{ linkContentType: ["logo"] }]});
 
+  /**
+   * Image Section content type
+   */
   const imageSection = migration
     .createCotentType("category")
     .name("Image Section")
@@ -25,6 +35,9 @@ module.exports = function (migration) {
     .type("Array")
     .items({ type: "Link", validations: [{ linkContentType: ["category"] }] });
 
+  /**
+   * Navigation content type
+   */
   const navigation = migration
     .createCotentType("navigation")
     .name("Navigation");

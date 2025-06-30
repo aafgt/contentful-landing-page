@@ -3,15 +3,20 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 import useFetch from "../../hooks/useFetch";
-import { VideoSectionQuery } from "../../util/queries";
+import { videoSectionQuery } from "../../util/queries";
 import type {
   ContentfulVideoSectionResponse,
   VideoSectionProps,
 } from "../../util/types";
 
-const VideoSection = () => {
-  const { data, error, loading } =
-    useFetch<ContentfulVideoSectionResponse>(VideoSectionQuery);
+/**
+ * VideoSection component displays Video Section Content entry that contains a video with a title.
+ * @param id - The Contentful entry id for the video section.
+ */
+const VideoSection = ({ id }: { id: string }) => {
+  const { data, error, loading } = useFetch<ContentfulVideoSectionResponse>(
+    videoSectionQuery(id)
+  );
 
   let dataObj: VideoSectionProps | undefined;
   let liveData = useContentfulLiveUpdates(data);
@@ -28,7 +33,7 @@ const VideoSection = () => {
   }
 
   if (liveData) {
-    dataObj = liveData?.data?.videoSection ;
+    dataObj = liveData?.data?.videoSection;
   } else {
     dataObj = data?.data?.videoSection;
   }

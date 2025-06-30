@@ -2,10 +2,19 @@ import 'dotenv/config';
 import fs from "fs";
 import contentful from "contentful-management";
 
+/**
+ * Contentful asset upload script.
+ * Uploads a set of images and videos to Contentful using the Management API.
+ */
+
 const client = contentful.createClient({
   accessToken: process.env.VITE_CONTENTFUL_MANAGEMENT_TOKEN,
 });
 
+/**
+ * Array of asset objects to upload to Contentful.
+ * @type {Array<{title: string, fileName: string, path: string, contentType: string}>}
+ */
 const assets = [
   {
     title: "Gathering",

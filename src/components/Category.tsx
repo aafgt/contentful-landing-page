@@ -1,6 +1,10 @@
 import { useContentfulInspectorMode } from "@contentful/live-preview/react";
 import type { CategoryProps } from "../util/types";
 
+/**
+ * Category component displays a category with a logo and title.
+ * @param props - CategoryProps containing title, logo, and entryId.
+ */
 const Category: React.FC<CategoryProps> = ({ title, logo, entryId }) => {
   const inspectorProps = useContentfulInspectorMode({ entryId });
 
@@ -10,7 +14,7 @@ const Category: React.FC<CategoryProps> = ({ title, logo, entryId }) => {
       onClick={() => console.log(`Navigate to: ${logo.props?.image}`)}
     >
       {logo}
-      <p {...inspectorProps({fieldId: "title"})}>{title}</p>
+      <p {...inspectorProps({ fieldId: "title" })}>{title}</p>
     </div>
   );
 };

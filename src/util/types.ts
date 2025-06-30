@@ -248,3 +248,20 @@ export interface ContentfulLandingPageResponse {
     };
   };
 }
+
+export interface ContentfulHeaderRespones {
+  errors?: object[];
+  data: {
+    header: {
+      heading: {
+        sys: {id: string};
+      }
+      navigation: {
+        sys: {id: string};
+      };
+      heroBanner: {
+        sys: {id: string};
+      };
+    }
+  }
+}

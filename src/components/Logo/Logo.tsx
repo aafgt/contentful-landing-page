@@ -1,6 +1,9 @@
 import type { LogoProps } from "../../util/types";
 
-
+ /**
+ * Logo component displays a logo image.
+ * @param props - LogoProps containing title and image url.
+ */
 const Logo: React.FC<LogoProps> = ({title, image}) => {
     const handleOnClick = () => {
         console.log("Logo clicked! Navigating to: ", title);

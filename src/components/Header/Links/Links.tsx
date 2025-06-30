@@ -1,3 +1,7 @@
+/**
+ * Links component arranges its children in a row or column based on the type.
+ * @param props - LinksProps with type and children.
+ */
 interface LinksProps {
   type: "single" | "group";
   children: React.ReactNode;

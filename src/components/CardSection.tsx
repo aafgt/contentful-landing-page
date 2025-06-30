@@ -8,7 +8,11 @@ import {
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 
-const CardSection = ({id}: {id: string}) => {
+/**
+ * CardSection component renders a Card Section Content entry containing multiple Card components.
+ * @param id - The Contentful entry id for the cards section.
+ */
+const CardSection = ({ id }: { id: string }) => {
   const { data, loading, error } =
     useFetch<ContentfulCardsSectionResponse>(cardsSectionQuery(id));
 
