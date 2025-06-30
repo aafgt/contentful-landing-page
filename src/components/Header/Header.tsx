@@ -26,13 +26,15 @@ const Header = ({ id }: { id: string }) => {
   // Render the Heading, Navigation, and HeroBanner components if their ids are present.
   return (
   <>
-    <div className="fixed">
-      {data?.data?.header?.heading?.sys.id && (
-        <Heading id={data.data.header.heading.sys.id} />
-      )}
-      {data?.data?.header?.navigation?.sys.id && (
-        <Navigation id={data.data.header.navigation.sys.id} />
-      )}
+    <div className="w-full flex flex-col items-center overflow-x:hidden">
+      <div className="max-w-7xl w-full mx-auto flex flex-col">
+        {data?.data?.header?.heading?.sys.id && (
+          <Heading id={data.data.header.heading.sys.id} />
+        )}
+        {data?.data?.header?.navigation?.sys.id && (
+          <Navigation id={data.data.header.navigation.sys.id} />
+        )}
+      </div>
     </div>
     <div>
       {data?.data?.header?.heroBanner?.sys.id && (

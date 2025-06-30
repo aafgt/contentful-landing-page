@@ -45,23 +45,20 @@ const Heading = ({ id }: { id: string }) => {
   }
   // Render the heading links using the Links and Link components.
   return (
-    <div
-      {...inspectorProps({ fieldId: "link" })}
-      className="flex flex-row justify-items-end items-center bg-black p-1  space-x-10 w-screen"
-    >
-      <Links type="single">
-        {dataArr &&
-          dataArr.map((item: HeadingProps) => (
-            <Link
-              key={item.title}
-              url={item.url}
-              title={item.title}
-              styles={styles}
-            />
-          ))}
-      </Links>
+  <div {...inspectorProps({ fieldId: "link" })} className="bg-black p-2 rounded-t-lg">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 p-1">
+      {dataArr &&
+        dataArr.map((item: HeadingProps) => (
+          <Link
+            key={item.title}
+            url={item.url}
+            title={item.title}
+            styles={styles}
+          />
+        ))}
     </div>
-  );
+  </div>
+);
 };
 
 export default Heading;

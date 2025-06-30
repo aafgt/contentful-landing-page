@@ -48,17 +48,17 @@ const Navigation = ({id}:{id:string}) => {
     dataArr = data?.data?.navigation?.linkCollection?.items || [];
   }
   // Render the logo and navigation links.
-  return (
-    <div {...inspectorProps({ fieldId: "links" })} className="flex flex-row bg-white shadow-xl items-start space-x-10 p-2">
-      <Logo image={logoUrl} title={logoTitle} />
-      <Links type="single">
-        {dataArr &&
-          dataArr.map((item: NavigationProps) => (
-            <Link title={item?.title} url={item?.url} styles={styles} />
-          ))}
-      </Links>
-    </div>
-  );
+return (
+  <div {...inspectorProps({ fieldId: "links" })} className="flex flex-wrap bg-white shadow-xl items-start gap-x-4 p-2 rounded-b-lg w-full">
+    <Logo image={logoUrl} title={logoTitle} />
+    <Links type="single">
+      {dataArr &&
+        dataArr.map((item: NavigationProps) => (
+          <Link title={item?.title} url={item?.url} styles={styles} />
+        ))}
+    </Links>
+  </div>
+);
 };
 
 export default Navigation;

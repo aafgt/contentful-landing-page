@@ -62,7 +62,7 @@ function App() {
       enableLiveUpdates
       enableInspectorMode
     >
-      <div className="flex flex-col h-auto">
+      <div className="flex flex-col h-auto w-auto ">
         {data?.data.landingPageCollection.items[0].sectionsCollection.items.map(
           (section) => getReactComponentOfSection(section.__typename, section.sys.id)
         )}

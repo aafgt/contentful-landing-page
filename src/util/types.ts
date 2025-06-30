@@ -77,6 +77,12 @@ export interface HeroBannerProps {
     url: string;
   };
 }
+
+export interface LinksProps {
+  type: "single" | "group";
+  children: React.ReactNode;
+}
+
 export interface ContentfulContentSectionResponse {
   errors?: object[];
   data: {

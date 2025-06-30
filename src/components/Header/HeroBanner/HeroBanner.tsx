@@ -43,7 +43,7 @@ const HerroBanner= ({id}:{id:string}) => {
       <img {...inspectorProps({fieldId: "heroBanner"})}
         src={dataObj?.image.url}
         alt={dataObj?.title}
-        className="w-screen min-h-[200px] max-h-[300px] object-center rounded-2xl"
+        className="w-full min-h-[200px] max-h-[300px] object-center rounded-2xl"
       />
     </>
   );

@@ -45,23 +45,23 @@ const VideoSection = ({ id }: { id: string }) => {
   }
   // Render the video section with title and video iframe.
   return (
-    <div className="flex flex-col justify-center items-center bg-white p-2">
+    <div className="flex flex-col justify-center items-center bg-white p-2 w-full">
       <h2
         {...inspectorProps({ fieldId: "name" })}
         className="text-4xl font-bold p-2"
       >
         {dataObj?.name || "Video Section"}
       </h2>
-      <iframe
-        {...inspectorProps({ fieldId: "video" })}
-        width={720}
-        height={480}
-        src={dataObj?.video?.url}
-        title="Example Video"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        className="rounded-lg shadow-lg"
-      />
+      <div className="w-full max-w-2xl aspect-video">
+        <iframe
+          {...inspectorProps({ fieldId: "video" })}
+          src={dataObj?.video?.url}
+          title="Example Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="rounded-lg shadow-lg w-full h-full"
+        />
+      </div>
     </div>
   );
 };
