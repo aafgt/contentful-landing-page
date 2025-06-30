@@ -59,18 +59,6 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) to view the app.
 
-### Building for Production
-
-```sh
-npm run build
-```
-
-### Linting
-
-```sh
-npm run lint
-```
-
 ## Project Structure
 
 - `src/` - Main source code (components, hooks, utilities)
@@ -93,5 +81,3 @@ To enable Contentful Live Preview, append `?preview=true` to the URL and ensure 
 MIT
 
 ---
-
-**Built with ❤️ using React, Vite, and Contentful.**
