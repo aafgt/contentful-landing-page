@@ -1,54 +1,97 @@
-# React + TypeScript + Vite
+# Contentful Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, dynamic landing page built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**, powered by Contentful CMS. This project demonstrates a modular, content-driven architecture with live preview and inspector mode support via the Contentful Live Preview SDK.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dynamic Content**: All page sections (header, hero banner, content, cards, images, video, footer) are managed in Contentful and rendered dynamically.
+- **Live Preview**: Instant updates and inspector mode for editors using [@contentful/live-preview](https://www.npmjs.com/package/@contentful/live-preview).
+- **TypeScript**: Full type safety for Contentful responses and React components.
+- **Tailwind CSS**: Utility-first styling for rapid UI development.
+- **Vite**: Fast development server and optimized production builds.
+- **Migration Scripts**: Easily manage Contentful content models and assets.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js (v18+ recommended)
+- A Contentful space with the required content models (see `migration-scripts/`)
+
+### Installation
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/contentful-landing-page.git
+   cd contentful-landing-page
+   ```
+
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+
+3. **Configure environment variables:**
+
+   Create a `.env` file in the project root with the following variables:
+
+   ```
+   VITE_CONTENTFUL_SPACE_ID=your_space_id
+   VITE_CONTENTFUL_ACCESS_TOKEN=your_delivery_api_key
+   VITE_CONTENTFUL_PREVIEW_ACCESS_TOKEN=your_preview_api_key
+   VITE_CONTENTFUL_GRAPHQL_URL=https://graphql.contentful.com/content/v1/spaces/your_space_id
+   VITE_CONTENTFUL_MANAGEMENT_TOKEN=your_management_api_key
+   ```
+
+4. **(Optional) Run migration scripts to set up Contentful models and upload assets:**
+   ```sh
+   # Example for migration-script-1.js
+   node migration-scripts/migration-script-1.js
+   ```
+
+### Development
+
+Start the local development server:
+
+```sh
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) to view the app.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Building for Production
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```sh
+npm run build
 ```
+
+### Linting
+
+```sh
+npm run lint
+```
+
+## Project Structure
+
+- `src/` - Main source code (components, hooks, utilities)
+- `migration-scripts/` - Scripts for Contentful model and asset setup
+- `public/` - Static assets
+- `index.html` - Main HTML entry point
+
+## Contentful Setup
+
+- Content models are defined in `migration-scripts/`.
+- Each section (Header, ContentSection, ImageSection, CardsSection, VideoSection, Footer) is a Contentful entry.
+- The landing page is assembled dynamically based on the `landingPage` entry's referenced sections.
+
+## Live Preview
+
+To enable Contentful Live Preview, append `?preview=true` to the URL and ensure your preview API key is set.
+
+## License
+
+MIT
+
+---
+
+**Built with ❤️ using React, Vite, and Contentful.**
