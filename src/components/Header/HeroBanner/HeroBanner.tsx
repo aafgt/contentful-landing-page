@@ -35,8 +35,7 @@ const HerroBanner= ({id}:{id:string}) => {
   } else {
     dataObj = data?.data?.heroBanner;
   }
-  // Log the image URL for debugging.
-  console.log(dataObj?.image.url)
+
   // Render the hero banner image.
   return (
     <>

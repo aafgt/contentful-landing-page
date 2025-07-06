@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 /**
  * Custom React hook to fetch data from Contentful GraphQL API.
@@ -8,7 +9,11 @@ import { useEffect, useState } from "react";
  * @param query - The GraphQL query string to execute.
  * @returns An object containing the data, loading state, and error message.
  */
-const useFetch = <T,>(query: string) => {
+const useFetch = <T,>(query: string, slug?: string) => {
+
+  const params = useParams();
+  const productSlug = slug || params.productSlug || "";
+
   // State for the fetched data.
   const [data, setData] = useState<T>();
 
@@ -41,7 +46,7 @@ const useFetch = <T,>(query: string) => {
           },
           body: JSON.stringify({
             query,
-            variables: { preview: isLivePreview },
+            variables: { preview: isLivePreview, slug: productSlug },
           }),
         }
       );

@@ -30,7 +30,7 @@ query ($preview: Boolean!) {
       id
     }
     name
-    categoriesCollection(limit: 5) {
+    categoriesCollection(limit: 10) {
       items {
         __typename
         sys {
@@ -57,24 +57,38 @@ query ($preview: Boolean!) {
       id
     }
     name
-    cardsCollection(limit: 5) {
+    cardsCollection(limit: 10) {
       items {
         __typename
         sys {
           id
         }
-        title
-        category
-        image {
-          title
-          url
-        }
-        cta {
-          title
-          url
-        }
-        price
+        slug
       }
+    }
+  }
+}
+`;
+
+export const cardQuery = `
+query ($preview: Boolean!, $slug: String!) {
+  cardCollection(preview: $preview, where: {slug: $slug}) {
+    items {
+      __typename
+      sys {
+        id
+      }
+      title
+      category
+      image {
+        title
+        url
+      }
+      cta {
+        title
+        url
+      }
+      price
     }
   }
 }
@@ -236,7 +250,7 @@ query ($preview: Boolean!) {
 }
 `;
 
-export const headerQuery = (id:string) => `
+export const headerQuery = (id: string) => `
 query ( $preview: Boolean!) {
   header(id: "${id}" , preview:$preview){
     heading{

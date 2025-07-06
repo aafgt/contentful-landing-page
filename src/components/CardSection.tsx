@@ -1,21 +1,26 @@
 import Card from "./Card";
 import { cardsSectionQuery } from "../util/queries";
 import type { ContentfulCardsSectionResponse } from "../util/types";
-import CTA from "./CTA";
 import useFetch from "../hooks/useFetch";
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
+import { useNavigate } from "react-router-dom";
 
 /**
  * CardSection component renders a Card Section Content entry containing multiple Card components.
  * @param id - The Contentful entry id for the cards section.
  */
 const CardSection = ({ id }: { id: string }) => {
+  const isLivePreview =
+    new URLSearchParams(window.location.search).get("preview") === "true";
+
+  const navigate = useNavigate();
   // Fetch cards section data from Contentful.
-  const { data, loading, error } =
-    useFetch<ContentfulCardsSectionResponse>(cardsSectionQuery(id));
+  const { data, loading, error } = useFetch<ContentfulCardsSectionResponse>(
+    cardsSectionQuery(id)
+  );
 
   // Get live updates from Contentful if enabled.
   const liveData = useContentfulLiveUpdates(data);
@@ -48,27 +53,17 @@ const CardSection = ({ id }: { id: string }) => {
         className="grid grid-cols-2 max-md:grid-cols-1 gap-5"
         {...inspectorProps({ fieldId: "cards" })}
       >
-        {liveData?.data.cardsSection.cardsCollection.items.map(
-          (card) => (
-            <Card
-              key={card?.title}
-              title={card?.title}
-              category={card?.category}
-              image={card?.image?.url}
-              imageAlt={card?.image?.title}
-              cta={
-                <CTA
-                  title={card?.cta?.title}
-                  url={card?.cta?.url}
-                  className="text-red-700 hover:underline hover:cursor-pointer"
-                  {...inspectorProps({ entryId: card.sys.id, fieldId: "cta" })}
-                />
-              }
-              price={card?.price}
-              entryId={card?.sys.id}
-            />
-          )
-        )}
+        {liveData?.data.cardsSection.cardsCollection.items.map((card) => (
+          <div
+            onClick={() => {
+              isLivePreview ?
+              navigate(`/product/${card.slug}/?preview=true`) :
+              navigate(`/product/${card.slug}`);
+            }}
+          >
+            <Card slug={card.slug} />
+          </div>
+        ))}
       </div>
     </div>
   );

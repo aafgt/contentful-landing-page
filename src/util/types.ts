@@ -13,13 +13,7 @@ export interface ContentSectionProps {
 }
 
 export interface CardProps {
-  title: string;
-  category: string;
-  image: string;
-  imageAlt: string;
-  cta: React.ReactNode;
-  price: number;
-  entryId: string;
+  slug: string;
 }
 
 export interface CardSectionProps {
@@ -136,16 +130,29 @@ export interface ContentfulCardsSectionResponse {
         items: {
           __typename: string;
           sys: { id: string };
-          title: string;
-          category: string;
-          price: number;
-          image: {
-            title: string;
-            url: string;
-          };
-          cta: { title: string; url: string };
+          slug: string;
         }[];
       };
+    };
+  };
+}
+
+export interface ContentfulCardResponse {
+  errors?: object[];
+  data: {
+    cardCollection: {
+      items: {
+        __typename: string;
+        sys: { id: string };
+        title: string;
+        category: string;
+        price: number;
+        image: {
+          title: string;
+          url: string;
+        };
+        cta: { title: string; url: string };
+      }[];
     };
   };
 }
@@ -260,14 +267,14 @@ export interface ContentfulHeaderRespones {
   data: {
     header: {
       heading: {
-        sys: {id: string};
-      }
+        sys: { id: string };
+      };
       navigation: {
-        sys: {id: string};
+        sys: { id: string };
       };
       heroBanner: {
-        sys: {id: string};
+        sys: { id: string };
       };
-    }
-  }
+    };
+  };
 }
