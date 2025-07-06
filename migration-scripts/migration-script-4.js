@@ -9,7 +9,7 @@ module.exports = function (migration) {
   const header = migration
     .createContentType("header")
     .name("Header")
-    .displayField("");
+    .displayField("heading");
 
   header
     .createField("heading")
@@ -39,13 +39,16 @@ module.exports = function (migration) {
   const footer = migration
     .createContentType("footer")
     .name("Footer")
-    .displayField("");
+    .displayField("footer");
 
   footer
     .createField("footer")
     .type("Array")
-    .items({ type: "Link", linkType: "Entry" })
-    .validations([{ linkContentType: ["heading/footerSection"] }])
+    .items({
+      type: "Link",
+      validations: [{ linkContentType: ["heading/footerSection"] }],
+      linkType: "Entry",
+    })
     .required(true)
     .name("Footer");
 };

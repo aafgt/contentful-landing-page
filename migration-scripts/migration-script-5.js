@@ -9,7 +9,7 @@ module.exports = function (migration) {
   const landingPage = migration
     .createContentType("landingPage")
     .name("Landing Page")
-    .displayField("");
+    .displayField("header");
 
   landingPage
     .createField("header")

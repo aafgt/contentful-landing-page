@@ -15,7 +15,7 @@ module.exports = function (migration) {
 
   heroBanner
     .createField("image")
-    .type("link")
+    .type("Link")
     .linkType("Asset")
     .required(true)
     .name("Image");

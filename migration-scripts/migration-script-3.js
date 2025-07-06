@@ -7,7 +7,7 @@ module.exports = function (migration) {
    * Category content type
    */
   const category = migration
-    .createCotentType("category")
+    .createContentType("category")
     .name("Category")
     .displayField("title");
 
@@ -17,14 +17,14 @@ module.exports = function (migration) {
     .createField("logo")
     .name("Logo")
     .type("Link")
+    .linkType("Asset")
     .required(true)
-    .validations([{ linkContentType: ["logo"] }]);
 
   /**
    * Image Section content type
    */
   const imageSection = migration
-    .createCotentType("category")
+    .createContentType("imageSection")
     .name("Image Section")
     .displayField("name");
 
@@ -33,26 +33,34 @@ module.exports = function (migration) {
     .createField("categories")
     .name("Categories")
     .type("Array")
-    .items({ type: "Link", validations: [{ linkContentType: ["category"] }] });
+    .items({
+      type: "Link",
+      linkType: "Entry",
+      validations: [{ linkContentType: ["category"] }],
+    });
 
   /**
    * Navigation content type
    */
   const navigation = migration
-    .createCotentType("navigation")
+    .createContentType("navigation")
     .name("Navigation");
 
   navigation
     .createField("logo")
     .name("Logo")
     .type("Link")
+    .linkType("Asset")
     .required(true)
-    .validations([{ linkContentType: ["logo"] }]);
 
   navigation
     .createField("link")
     .name("Links")
     .type("Array")
     .required(true)
-    .items({ type: "Link", validations: [{ linkContentType: ["link"] }] });
+    .items({
+      type: "Link",
+      linkType: "Entry",
+      validations: [{ linkContentType: ["link"] }],
+    });
 };

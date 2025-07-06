@@ -7,7 +7,7 @@ module.exports = function (migration) {
    * Card content type
    */
   const card = migration
-    .creatContentType("card")
+    .createContentType("card")
     .name("Card")
     .displayField("title");
 
@@ -37,7 +37,7 @@ module.exports = function (migration) {
    * Card Section content type
    */
   const cardSection = migration
-    .creatContentType("cardSection")
+    .createContentType("cardSection")
     .name("Card Section")
     .displayField("name");
 
@@ -45,8 +45,11 @@ module.exports = function (migration) {
   cardSection
     .createField("cards")
     .type("Array")
-    .items({ type: "Link", linkType: "Entry" })
-    .validations([{ linkContentType: ["card"] }])
+    .items({
+      type: "Link",
+      linkType: "Entry",
+      validations: [{ linkContentType: ["card"] }],
+    })
     .required(true)
     .name("Cards");
 
@@ -54,7 +57,7 @@ module.exports = function (migration) {
    * Content Section content type
    */
   const contentSection = migration
-    .creatContentType("contentSection")
+    .createContentType("contentSection")
     .name("Content Section")
     .displayField("title");
 
@@ -66,7 +69,7 @@ module.exports = function (migration) {
     .name("Image");
   contentSection
     .createField("title")
-    .type("symbol")
+    .type("Symbol")
     .required(true)
     .name("Title");
   contentSection
