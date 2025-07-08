@@ -1,5 +1,4 @@
 import Link from "../Link/Link";
-import Links from "../Links/Links";
 import { headingSectionQuery } from "../../../util/queries";
 import useFetch from "../../../hooks/useFetch";
 import type {

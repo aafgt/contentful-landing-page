@@ -1,4 +1,3 @@
-import type React from "react";
 import useFetch from "../../../hooks/useFetch";
 import type {
   ContentfulHeroBannerResponse,
