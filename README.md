@@ -1,9 +1,10 @@
 # Contentful Landing Page
 
-A modern, dynamic landing page built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**, powered by Contentful CMS. This project demonstrates a modular, content-driven architecture with live preview and inspector mode support via the Contentful Live Preview SDK.
+A modern, dynamic landing page built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**, powered by Contentful CMS. This project demonstrates a modular, content-driven architecture with live preview and inspector mode support via the Contentful Live Preview Package.
 
 ## Features
 
+- **Multi-Page Demo**: Navigate between multiple product and landing pages, all powered by Contentful.
 - **Dynamic Content**: All page sections (header, hero banner, content, cards, images, video, footer) are managed in Contentful and rendered dynamically.
 - **Live Preview**: Instant updates and inspector mode for editors using [@contentful/live-preview](https://www.npmjs.com/package/@contentful/live-preview).
 - **TypeScript**: Full type safety for Contentful responses and React components.
@@ -21,12 +22,14 @@ A modern, dynamic landing page built with **React**, **TypeScript**, **Vite**, a
 ### Installation
 
 1. **Clone the repository:**
+
    ```sh
    git clone https://github.com/your-username/contentful-landing-page.git
    cd contentful-landing-page
    ```
 
 2. **Install dependencies:**
+
    ```sh
    npm install
    ```
@@ -43,10 +46,13 @@ A modern, dynamic landing page built with **React**, **TypeScript**, **Vite**, a
    VITE_CONTENTFUL_MANAGEMENT_TOKEN=your_management_api_key
    ```
 
-4. **(Optional) Run migration scripts to set up Contentful models and upload assets:**
+4. **Run migration scripts to set up Contentful models and upload assets:**
+
+   Navigate to the migration-scripts directory and run the following command (replace <SPACE_ID> and <MANAGEMENT_TOKEN> with your actual values):
+
    ```sh
    # Example for migration-script-1.js
-   node migration-scripts/migration-script-1.js
+   contentful space migration script.cjs --space-id <SPACE_ID> --management-token <MANAGEMENT_TOKEN>
    ```
 
 ### Development
