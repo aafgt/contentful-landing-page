@@ -4,7 +4,7 @@ A modern, dynamic landing page built with **React**, **TypeScript**, **Vite**, a
 
 ## Features
 
-- **Multi-Page Demo**: Navigate between multiple product through a landing pages, all powered by Contentful.
+- **Multi-Page Demo**: Navigate between multiple product through the landing page, all powered by Contentful.
 - **Dynamic Content**: All page sections (header, hero banner, content, cards, images, video, footer) are managed in Contentful and rendered dynamically.
 - **Live Preview**: Instant updates and inspector mode for editors using [@contentful/live-preview](https://www.npmjs.com/package/@contentful/live-preview).
 - **TypeScript**: Full type safety for Contentful responses and React components.
