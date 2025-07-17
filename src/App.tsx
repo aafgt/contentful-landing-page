@@ -27,13 +27,17 @@ function App() {
   const isLivePreview =
     new URLSearchParams(window.location.search).get("preview") === "true";
 
+  const isPreviewAllowed =
+    new URLSearchParams(window.location.search).get("spaceid") ===
+    import.meta.env.VITE_CONTENTFUL_SPACE_ID;
+
   useEffect(() => {
     if (isLivePreview) {
       document.addEventListener("contextmenu", (e) => e.preventDefault());
 
       const isInIframe = window.self !== window.top;
 
-      if (!isInIframe) {
+      if (!isInIframe || !isPreviewAllowed) {
         setIsAllowed(false);
       }
     }
